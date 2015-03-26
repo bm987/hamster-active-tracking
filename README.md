@@ -14,3 +14,28 @@ are doing nothing and modifies your Hamster database as such.
 
 If you are doing the same thing you were doing the last time you
 answered, simply press ENTER.
+
+## Why?
+
+If it's one of those days where you're multi-tasking across dozens of
+different tasks, time tracking is very difficult.  Remembering to
+switch tasks is hard.  Going back and altering history after you've
+forgotten is even harder.  This approach looks at what you are doing
+every X minutes (for me, X is 5) and bases the time tracking on that.
+You don't have to *remember* to do anything.  You just have to respond
+to the beep.  And unless you've switched tasks, responding is a single
+keypress.
+
+## What's needed
+
+Hamster Time Tracker, obviously.
+
+## installing
+
+git clone this repo.
+
+    chmod 755 *.sh
+
+Edit the preferences in `active-tracking.sh`.
+
+Run `active-tracking.sh`.
