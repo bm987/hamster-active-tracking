@@ -68,7 +68,7 @@ do
 	#
 	read -t 5 extra
 	answer="nothing"
-	echo "update facts set end_time = datetime('now','localtime') where end_time is null and id = (select max(id) from facts);" | sqlite3 $DB
+	echo "update facts set end_time = datetime('now','localtime') where end_time is null and start_time = (select max(start_time) from facts);" | sqlite3 $DB
     else
 	if [ -z "$answer" ]
 	then
@@ -76,7 +76,7 @@ do
 	    answer=$last
 	else
 	    echo "You are doing new activity, $answer."
-	    echo "update facts set end_time = datetime('now','localtime') where end_time is null and id = (select max(id) from facts);" | sqlite3 $DB
+	    echo "update facts set end_time = datetime('now','localtime') where end_time is null and start_time = (select max(start_time) from facts);" | sqlite3 $DB
 	    if [ -a "$answer" ]
 	    then
 		ACT_ID=`cat $answer`
