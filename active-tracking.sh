@@ -13,7 +13,7 @@
 # timeouts
 #
 
-PROMPT_TIME=60
+PROMPT_TIME=30
 DESC_PROMPT_TIME=20
 WAIT_TIME=300
 
@@ -61,7 +61,16 @@ while true
 do
     $WORKING_DIR/beep.sh 400 500 > /dev/null 2>&1
     read -e -t $PROMPT_TIME -p "What are you doing? " answer
-    if [ $? -gt 128 ]
+    return_code=$?
+
+    if [ $return_code -gt 128 ] && [ "$last" != "nothing" ]
+    then
+	$WORKING_DIR/beep.sh 600 750 > /dev/null 2>&1
+	read -e -t $PROMPT_TIME -p "Hello? What are you doing? " answer
+	return_code=$?
+    fi
+
+    if [ $return_code -gt 128 ]
     then
 	echo "Timeout exceeded - you are doing nothing."
 	# read an extra 5 seconds just in case user hit ENTER just as the last timeout was exceeded
