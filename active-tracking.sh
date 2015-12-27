@@ -22,6 +22,17 @@ WAIT_TIME=300
 #
 
 WORKING_DIR=~/projects/hamster-active-tracking
+
+#
+# Two folders of WAV files; one for the first sound; another
+# for the second sound if the first sound is ignored
+#
+SOUNDS_1_DIR=$WORKING_DIR/sounds1
+SOUNDS_2_DIR=$WORKING_DIR/sounds2
+
+#
+# SQLite file location of the Hamster Time Tracking file
+#
 DB=~/.local/share/hamster-applet/hamster.db
 
 ################################################################
@@ -59,13 +70,12 @@ done
 
 while true
 do
-    $WORKING_DIR/beep.sh 400 500 > /dev/null 2>&1
+    aplay -d2 `ls $SOUNDS_1_DIR/*.wav | sort -R | head -1` > /dev/null 2>&1
     read -e -t $PROMPT_TIME -p "What are you doing? " answer
     return_code=$?
-
     if [ $return_code -gt 128 ] && [ "$last" != "nothing" ]
     then
-	$WORKING_DIR/beep.sh 600 750 > /dev/null 2>&1
+	aplay -d2 `ls $SOUNDS_2_DIR/*.wav | sort -R | head -1` > /dev/null 2>&1
 	read -e -t $PROMPT_TIME -p "Hello? What are you doing? " answer
 	return_code=$?
     fi

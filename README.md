@@ -28,7 +28,7 @@ keypress.
 
 ## What's needed
 
-Hamster Time Tracker, obviously.
+Hamster Time Tracker, obviously.  https://github.com/projecthamster/hamster
 
 ## installing
 
@@ -38,4 +38,11 @@ git clone this repo.
 
 Edit the preferences in `active-tracking.sh`.
 
+Make two sound folders:
+
+	 mkdir sound1
+	 mkdir sound2
+
+Put some WAV files in the two folders.  Google free wav sound effects or make your own with `arecord`.
+	 
 Run `active-tracking.sh`.
